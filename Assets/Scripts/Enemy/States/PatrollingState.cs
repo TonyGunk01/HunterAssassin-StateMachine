@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace StatePattern.Enemy
 {
-    public class PatrollingState : IState
+    public class PatrollingState<T> : IState where T : EnemyController
     {
         public EnemyController Owner { get; set; }
-        private IStateMachine stateMachine;
+        private GenericStateMachine<T> stateMachine;
         private int currentPatrollingIndex = -1;
         private Vector3 destination;
 
-        public PatrollingState(IStateMachine stateMachine) => this.stateMachine = stateMachine;
+        public PatrollingState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
 
         public void OnStateEnter()
         {
@@ -32,6 +32,7 @@ namespace StatePattern.Enemy
         {
             if (currentPatrollingIndex == Owner.Data.PatrollingPoints.Count-1)
                 currentPatrollingIndex = 0;
+
             else
                 currentPatrollingIndex++;
         }
@@ -45,6 +46,5 @@ namespace StatePattern.Enemy
         }
 
         private bool ReachedDestination() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
-
     }
 }

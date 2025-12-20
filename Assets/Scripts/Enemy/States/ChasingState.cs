@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace StatePattern.Enemy
 {
-    public class ChasingState : IState
+    public class ChasingState<T> : IState where T : EnemyController
     {
         public EnemyController Owner { get; set; }
-        private IStateMachine stateMachine;
+        private GenericStateMachine<T> stateMachine;
         private PlayerController target;
 
-        public ChasingState(IStateMachine stateMachine) => this.stateMachine = stateMachine;
+        public ChasingState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
 
         public void OnStateEnter()
         {
@@ -23,6 +23,7 @@ namespace StatePattern.Enemy
         public void Update()
         {
             MoveTowardsTarget();
+
             if (ReachedTarget())
             {
                 ResetPath();
@@ -32,13 +33,9 @@ namespace StatePattern.Enemy
 
         public void OnStateExit() => target = null;
 
-
         private void SetTarget() => target = GameService.Instance.PlayerService.GetPlayer();
-
         private void SetStoppingDistance() => Owner.Agent.stoppingDistance = Owner.Data.PlayerStoppingDistance;
-
         private bool MoveTowardsTarget() => Owner.Agent.SetDestination(target.Position);
-
         private bool ReachedTarget() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
 
         private void ResetPath()
