@@ -32,7 +32,6 @@ namespace StatePattern.Enemy
         {
             if (currentPatrollingIndex == Owner.Data.PatrollingPoints.Count-1)
                 currentPatrollingIndex = 0;
-
             else
                 currentPatrollingIndex++;
         }
@@ -46,5 +45,6 @@ namespace StatePattern.Enemy
         }
 
         private bool ReachedDestination() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
+
     }
 }

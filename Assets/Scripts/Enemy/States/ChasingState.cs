@@ -23,7 +23,6 @@ namespace StatePattern.Enemy
         public void Update()
         {
             MoveTowardsTarget();
-
             if (ReachedTarget())
             {
                 ResetPath();
@@ -33,9 +32,13 @@ namespace StatePattern.Enemy
 
         public void OnStateExit() => target = null;
 
+
         private void SetTarget() => target = GameService.Instance.PlayerService.GetPlayer();
+
         private void SetStoppingDistance() => Owner.Agent.stoppingDistance = Owner.Data.PlayerStoppingDistance;
+
         private bool MoveTowardsTarget() => Owner.Agent.SetDestination(target.Position);
+
         private bool ReachedTarget() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
 
         private void ResetPath()

@@ -23,7 +23,9 @@ namespace StatePattern.Enemy
         }
 
         private void InitializeVariables() => activeEnemies = new List<EnemyController>();
+
         private void SubscribeToEvents() => GameService.Instance.EventService.OnLevelSelected.AddListener(SpawnEnemies);
+
         private void UnsubscribeToEvents() => GameService.Instance.EventService.OnLevelSelected.RemoveListener(SpawnEnemies);
 
         public void SpawnEnemies(int levelId)
@@ -55,11 +57,9 @@ namespace StatePattern.Enemy
                 case EnemyType.OnePunchMan:
                     enemy = new OnePunchManController(enemyScriptableObject);
                     break;
-
                 case EnemyType.PatrolMan:
                     enemy = new PatrolManController(enemyScriptableObject);
                     break;
-
                 default:
                     enemy = new EnemyController(enemyScriptableObject);
                     break;
@@ -73,7 +73,6 @@ namespace StatePattern.Enemy
             activeEnemies.Remove(deadEnemy);
             SoundService.PlaySoundEffects(Sound.SoundType.ENEMY_DEATH);
             UIService.UpdateEnemyCount(activeEnemies.Count, spawnedEnemies);
-
             if (PlayerWon()) 
             {
                 SoundService.PlaySoundEffects(Sound.SoundType.GAME_WON);
