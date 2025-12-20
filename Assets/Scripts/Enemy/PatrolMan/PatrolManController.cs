@@ -1,10 +1,10 @@
-﻿using StatePattern.Player;
+using StatePattern.Player;
 using StatePattern.StateMachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Enemy.PatrolMan
+namespace StatePattern.Enemy
 {
     public class PatrolManController : EnemyController
     {

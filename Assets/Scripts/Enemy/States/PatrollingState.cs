@@ -22,7 +22,7 @@ namespace StatePattern.Enemy
 
         public void Update()
         {
-            if (ReachedDestination())
+            if(ReachedDestination())
                 stateMachine.ChangeState(States.IDLE);
         }
 
@@ -30,9 +30,8 @@ namespace StatePattern.Enemy
 
         private void SetNextWaypointIndex()
         {
-            if (currentPatrollingIndex == Owner.Data.PatrollingPoints.Count - 1)
+            if (currentPatrollingIndex == Owner.Data.PatrollingPoints.Count-1)
                 currentPatrollingIndex = 0;
-
             else
                 currentPatrollingIndex++;
         }
@@ -46,5 +45,6 @@ namespace StatePattern.Enemy
         }
 
         private bool ReachedDestination() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
+
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Enemy.PatrolMan
+namespace StatePattern.Enemy
 {
     public class PatrolManStateMachine : IStateMachine
     {
@@ -32,5 +32,16 @@ namespace Enemy.PatrolMan
                 state.Owner = Owner;
             }
         }
+
+        public void Update() => currentState?.Update();
+
+        protected void ChangeState(IState newState)
+        {
+            currentState?.OnStateExit();
+            currentState = newState;
+            currentState?.OnStateEnter();
+        }
+
+        public void ChangeState(States newState) => ChangeState(States[newState]);
     }
 }
