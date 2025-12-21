@@ -11,9 +11,7 @@ namespace StatePattern.UI
         private int levelId;
 
         private void Start() => GetComponent<Button>().onClick.AddListener(OnLevelButtonClicked);
-
         public void SetOwner(LevelSelectionUIController owner) => this.owner = owner;
-
         private void OnLevelButtonClicked() => owner.OnLevelSelected(levelId);
 
         public void SetLevelID(int levelId)

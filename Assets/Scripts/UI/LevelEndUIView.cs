@@ -20,12 +20,8 @@ namespace StatePattern.UI
         }
 
         public void SetController(IUIController controllerToSet) => controller = controllerToSet as LevelEndUIController;
-
         public void DisableView() => gameObject.SetActive(false);
-
         public void EnableView() => gameObject.SetActive(true);
-
         public void SetResultText(string textToSet) => resultText.SetText(textToSet);
-
     }
 }

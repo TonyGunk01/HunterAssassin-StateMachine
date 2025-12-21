@@ -16,7 +16,6 @@ namespace StatePattern.Enemy
         public void Update()
         {
             Owner.SetRotation(CalculateRotation());
-
             if (IsRotationComplete())
                 stateMachine.ChangeState(States.IDLE);
         }

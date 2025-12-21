@@ -10,12 +10,12 @@ namespace StatePattern.Enemy
         private float timer;
 
         public IdleState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
-
         public void OnStateEnter() => ResetTimer();
 
         public void Update()
         {
             timer -= Time.deltaTime;
+
             if (timer <= 0)
             {
                 if (typeof(T) == typeof(OnePunchManController))
@@ -27,7 +27,6 @@ namespace StatePattern.Enemy
         }
 
         public void OnStateExit() => timer = 0;
-
         private void ResetTimer() => timer = Owner.Data.IdleTime;
     }
 }

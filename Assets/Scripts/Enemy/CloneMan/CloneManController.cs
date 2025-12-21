@@ -18,7 +18,7 @@ namespace Scripts.Enemy
             stateMachine.ChangeState(States.IDLE);
         }
 
-        private void CreateStateMachine() => stateMachine = new HitmanStateMachine(this);
+        private void CreateStateMachine() => stateMachine = new CloneManStateMachine(this);
 
         public override void UpdateEnemy()
         {

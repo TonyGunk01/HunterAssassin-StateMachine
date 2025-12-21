@@ -46,6 +46,5 @@ namespace StatePattern.Enemy
         }
 
         private bool ReachedDestination() => Owner.Agent.remainingDistance <= Owner.Agent.stoppingDistance;
-
     }
 }

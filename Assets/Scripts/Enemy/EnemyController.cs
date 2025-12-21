@@ -54,17 +54,12 @@ namespace StatePattern.Enemy
         }
 
         public void ToggleKillOverlay(bool value) => GameService.Instance.UIService.ToggleKillOverlay(value);
-
         public void ShakeCamera() => GameService.Instance.UIService.ShakeCamera();
-
         public void SetRotation(Vector3 eulerAngles) => enemyView.transform.rotation = Quaternion.Euler(eulerAngles);
-
         public void SetRotation(Quaternion desiredRotation) => enemyView.transform.rotation = desiredRotation;
+        public void ToggleEnemyColor(EnemyColorType colorToSet) => enemyView.ChangeColor(colorToSet);
 
-        public void ToggleEnemyColor(bool value)=>  enemyView.ToggleColor(value);
-        
-
-        public void Shoot()
+        public virtual void Shoot()
         {
             enemyView.PlayShootingEffect();
             GameService.Instance.SoundService.PlaySoundEffects(Sound.SoundType.ENEMY_SHOOT);
@@ -72,11 +67,8 @@ namespace StatePattern.Enemy
         }
 
         public void SetState(EnemyState stateToSet) => currentState = stateToSet;
-
         public virtual void PlayerEnteredRange(PlayerController targetToSet) => GameService.Instance.SoundService.PlaySoundEffects(Sound.SoundType.ENEMY_ALERT);
-
         public virtual void PlayerExitedRange() { }
-
         public virtual void UpdateEnemy() { }
     }
 

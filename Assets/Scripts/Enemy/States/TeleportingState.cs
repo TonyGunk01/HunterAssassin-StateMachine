@@ -1,6 +1,6 @@
-﻿using StatePattern.Main;
-using StatePattern.Player;
+﻿using StatePattern.Enemy;
 using StatePattern.StateMachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,13 +27,14 @@ namespace StatePattern.Enemy
 
         private Vector3 GetRandomNavMeshPoint()
         {
-            Vector3 randomDirection = Random.insideUnitSphere * Owner.Data.TeleportingRadius + Owner.Position;
+            Vector3 randomDirection = Random.insideUnitSphere * 5f + Owner.Position;
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(randomDirection, out hit, Owner.Data.TeleportingRadius, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomDirection, out hit, 5f, NavMesh.AllAreas))
                 return hit.position;
 
-            return Owner.Data.SpawnPosition;
+            else
+                return Owner.Data.SpawnPosition;
         }
     }
 }

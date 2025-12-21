@@ -1,8 +1,6 @@
-﻿using StatePattern.StateMachine;
-using System.Collections.Generic;
-using UnityEngine;
+using StatePattern.StateMachine;
 
-namespace Scripts.Enemy
+namespace StatePattern.Enemy
 {
     public class HitmanStateMachine : GenericStateMachine<HitmanController>
     {

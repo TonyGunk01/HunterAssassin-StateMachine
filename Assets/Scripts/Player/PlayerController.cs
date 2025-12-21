@@ -71,7 +71,6 @@ namespace StatePattern.Player
         }
 
         private float GetTargetRotation(Vector3 movementDirection) => Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-
         private Vector3 CalculateRotationToSet(float targetRotation) => Vector3.up * Mathf.MoveTowardsAngle(playerView.transform.eulerAngles.y, targetRotation, playerScriptableObject.RotationSpeed * Time.deltaTime);
 
         private void MovePlayer(Vector3 movementDirection)
@@ -81,21 +80,23 @@ namespace StatePattern.Player
         }
 
         private Vector3 GetMovementVector(Vector3 movementDirection) => Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f) * movementDirection;
-
         private Vector3 GetPositionToMoveAt(Vector3 moveVector) => playerView.Rigidbody.position + moveVector * playerScriptableObject.MovementSpeed * Time.deltaTime;
 
         private void UpdateAttack()
         {
             playerView.PlayAttackVFX();
+
             if (enemiesInRange.Count > 0)
             {
                SoundService.PlaySoundEffects(SoundType.PLAYER_ATTACK);
-                foreach (EnemyController enemy in enemiesInRange)
-                {
+
+               foreach (EnemyController enemy in enemiesInRange)
+               {
                     enemy.Die();
-                }
-                enemiesInRange.Clear();
+               }
+               enemiesInRange.Clear();
             }
+
             else
             {
                 SoundService.PlaySoundEffects(SoundType.PLAYER_SLASH);
@@ -106,12 +107,14 @@ namespace StatePattern.Player
         {
             currentHealth -= damageToInflict;
             SoundService.PlaySoundEffects(SoundType.PLAYER_HIT);
+
             if(currentHealth <= 0)
             {
                 currentHealth = 0;
                 PlayerDied();
                 EnemyService.PlayerDied();
             }
+
             UIService.UpdatePlayerHealth((float)currentHealth / playerScriptableObject.MaximumHealth);
         }
 
@@ -122,7 +125,6 @@ namespace StatePattern.Player
         }
 
         public void AddEnemy(EnemyController enemy) => enemiesInRange.Add(enemy);
-            
         public void RemoveEnemy(EnemyController enemy) => enemiesInRange.Remove(enemy);
     }
 }

@@ -10,7 +10,6 @@ namespace StatePattern.Enemy.Bullet
         private BulletController controller;
 
         public void SetController(BulletController controlleroSet) => controller = controlleroSet;
-
         private void Update() => controller.UpdateBullet();
 
         private void OnTriggerEnter(Collider other)
@@ -19,9 +18,11 @@ namespace StatePattern.Enemy.Bullet
             {
                 if (other.isTrigger)
                     return;
+
                 else 
                     controller.PlayerHit(other.GetComponent<PlayerView>());
             }
+
             Destroy(gameObject);
         }
 

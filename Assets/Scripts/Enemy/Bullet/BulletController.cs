@@ -26,7 +26,6 @@ namespace StatePattern.Enemy.Bullet
         }
 
         public void UpdateBullet() => bulletView.transform.Translate(Vector3.forward * bulletScriptableObject.Speed * Time.deltaTime, Space.Self);
-
         public void PlayerHit(PlayerView playerHit) => playerHit.TakeDamage(bulletScriptableObject.Damage);
     }
 }

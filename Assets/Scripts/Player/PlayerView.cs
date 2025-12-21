@@ -13,15 +13,10 @@ namespace StatePattern.Player
         public Rigidbody Rigidbody { get; private set; }
 
         private void Start() => Rigidbody = GetComponent<Rigidbody>();
-
         public void SetController(PlayerController controllerToSet) => Controller = controllerToSet;
-
         private void Update() => Controller?.UpdatePlayer();
-
         private void FixedUpdate() => Controller?.FixedUpdatePlayer();
-
         public void TakeDamage(int damage) => Controller.TakeDamage(damage);
-
         public void PlayAttackVFX() => attackVFX.Play();
 
         private void OnTriggerEnter(Collider other)
@@ -30,7 +25,7 @@ namespace StatePattern.Player
             {
                 var enemyController = other.GetComponent<EnemyView>().Controller;
                 Controller.AddEnemy(enemyController);
-                enemyController.ToggleEnemyColor(true);
+                enemyController.ToggleEnemyColor(EnemyColorType.Vulnerable);
             }
         }
 
@@ -40,7 +35,7 @@ namespace StatePattern.Player
             {
                 var enemyController = other.GetComponent<EnemyView>().Controller;
                 Controller.RemoveEnemy(enemyController);
-                enemyController.ToggleEnemyColor(false);
+                enemyController.ToggleEnemyColor(EnemyColorType.Default);
             }
         }
     }

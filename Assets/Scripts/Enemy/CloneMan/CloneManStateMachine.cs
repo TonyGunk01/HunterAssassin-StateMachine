@@ -1,15 +1,13 @@
 ﻿using StatePattern.Enemy;
 using StatePattern.StateMachine;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Scripts.Enemy
 {
     public class CloneManStateMachine : GenericStateMachine<CloneManController>
     {
-        public CloneManStateMachine(HitmanController Owner) : base(Owner)
+        public CloneManStateMachine(CloneManController owner) : base(owner)
         {
-            this.Owner = Owner;
+            this.Owner = owner;
             CreateStates();
             SetOwner();
         }
