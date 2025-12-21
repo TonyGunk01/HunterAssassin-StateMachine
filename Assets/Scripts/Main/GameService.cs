@@ -18,7 +18,6 @@ namespace StatePattern.Main
 {
     public class GameService : GenericMonoSingleton<GameService>
     {
-        // Services:
         public SoundService SoundService { get; private set; }
         public EventService EventService { get; private set; }
         public LevelService LevelService { get; private set; }
@@ -28,12 +27,10 @@ namespace StatePattern.Main
         [SerializeField] private UIService uiService;
         public UIService UIService => uiService;
 
-        // Scriptable Objects:
         [SerializeField] private SoundScriptableObject soundScriptableObject;
         [SerializeField] private PlayerScriptableObject playerScriptableObject;
         [SerializeField] private List<LevelScriptableObject> levelScriptableObjects;
 
-        // Scene References:
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource bgMusicSource;
 

@@ -28,6 +28,7 @@ namespace StatePattern.Enemy
             if(IsRotationComplete(desiredRotation))
             {
                 shootTimer -= Time.deltaTime;
+
                 if (shootTimer <= 0)
                 {
                     ResetTimer();
@@ -37,7 +38,6 @@ namespace StatePattern.Enemy
         }
 
         public void OnStateExit() => target = null;
-
         private void SetTarget() => target = GameService.Instance.PlayerService.GetPlayer();
 
         private Quaternion CalculateRotationTowardsPlayer()
@@ -48,9 +48,7 @@ namespace StatePattern.Enemy
         }
 
         private Quaternion RotateTowards(Quaternion desiredRotation) => Quaternion.LerpUnclamped(Owner.Rotation, desiredRotation, Owner.Data.RotationSpeed / 30 * Time.deltaTime);
-
         private bool IsRotationComplete(Quaternion desiredRotation) => Quaternion.Angle(Owner.Rotation, desiredRotation) < Owner.Data.RotationThreshold;
-
         private void ResetTimer() => shootTimer = Owner.Data.RateOfFire;
     }
 }

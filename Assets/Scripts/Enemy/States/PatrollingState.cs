@@ -32,6 +32,7 @@ namespace StatePattern.Enemy
         {
             if (currentPatrollingIndex == Owner.Data.PatrollingPoints.Count-1)
                 currentPatrollingIndex = 0;
+
             else
                 currentPatrollingIndex++;
         }

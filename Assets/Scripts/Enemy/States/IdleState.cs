@@ -20,6 +20,7 @@ namespace StatePattern.Enemy
             {
                 if (typeof(T) == typeof(OnePunchManController))
                     stateMachine.ChangeState(States.ROTATING);
+
                 else
                     stateMachine.ChangeState(States.PATROLLING);
             }
