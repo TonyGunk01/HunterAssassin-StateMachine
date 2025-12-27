@@ -6,4 +6,4 @@ Each enemy has a detection range, if the player is in the detection range, then 
 
 Adding new behaviours to the enemy can be complicated and results in lengthier spaghetti like code, hence I have implemented state machines. In my case, I have an enemy which only chases, patrols or stays idle. In the future, I may want to add more complex enemy types which have additional states like chasing, rotating, etc.
 
-Video demo:
+[Click here for video demo:](https://youtu.be/WO1DHJwKHWg)
